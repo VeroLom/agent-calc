@@ -22,8 +22,8 @@ const HoofexCalc = {
         sulfurPrice2() { return this.sulfurAmount2 * this.sulfurPrice },
         sulfurPrice3() { return this.sulfurAmount3 * this.sulfurPrice },
         sulfurTreatmentPrice1() { return this.sulfurPrice1 / this.bathVolume },
-        sulfurTreatmentPrice2() { return this.sulfurPrice1 / this.bathVolume },
-        sulfurTreatmentPrice3() { return this.sulfurPrice1 / this.bathVolume },
+        sulfurTreatmentPrice2() { return this.sulfurPrice2 / this.bathVolume },
+        sulfurTreatmentPrice3() { return this.sulfurPrice3 / this.bathVolume },
 
         hoofexAmount1() { return Math.round(this.hoofexPercent1 / 100 * this.bathVolume) },
         hoofexAmount2() { return Math.round(this.hoofexPercent2 / 100 * this.bathVolume) },
