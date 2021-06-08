@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Calculator</title>
+        <style>
+            table { border-collapse: collapse }
+            td { border: 1px solid #d2d2d2 }
+
+            td { padding: .5rem }
+        </style>
+    </head>
+    <body>
+
+        <div id="hoofex-calc">
+
+            <table>
+                <tr>
+                    <td>Копытная ванна, л. воды</td>
+                    <td>{{ bathVolume }}</td>
+                    <td colspan="3">л</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Цена руб/кг</td>
+                    <td colspan="3">% разведения / кол-во / стоимость</td>
+                </tr>
+
+                <tr><th colspan="5">Медный купорос (сульфат меди)</th></tr>
+                <tr>
+                    <td>Медный купорос (сульфат меди)</td>
+                    <td><input v-model="sulfurPrice" /></td>
+                    <td>{{ sulfurPercent1 }}%</td>
+                    <td>{{ sulfurPercent2 }}%</td>
+                    <td>{{ sulfurPercent3 }}%</td>
+                </tr>
+                <tr>
+                    <td>кол-во средства на ванну {{ bathVolume }} л., кг.</td>
+                    <td></td>
+                    <td>{{ sulfurAmount1 }}</td>
+                    <td>{{ sulfurAmount2 }}</td>
+                    <td>{{ sulfurAmount3 }}</td>
+                </tr>
+                <tr>
+                    <td>стоимость средства на ванну {{ bathVolume }} л., руб.</td>
+                    <td></td>
+                    <td>{{ sulfurPrice1 }}</td>
+                    <td>{{ sulfurPrice2 }}</td>
+                    <td>{{ sulfurPrice3 }}</td>
+                </tr>
+                <tr>
+                    <td>Стоимость обработки на 1 голову КРС</td>
+                    <td>руб./голову</td>
+                    <td>{{ sulfurTreatmentPrice1 }}
+                    <td>{{ sulfurTreatmentPrice2 }}
+                    <td>{{ sulfurTreatmentPrice3 }}
+                </tr>
+
+                <tr><th colspan="5">HOOFEX EXTRA</th></tr>
+                <tr>
+                    <td>Готовое средство HOOFEX EXTRA</td>
+                    <td><input v-model="hoofexPrice" /></td>
+                    <td>{{ hoofexPercent1 }}%</td>
+                    <td>{{ hoofexPercent2 }}%</td>
+                    <td>{{ hoofexPercent3 }}%</td>
+                </tr>
+                <tr>
+                    <td>кол-во средства на ванну {{ bathVolume }} л., кг.</td>
+                    <td></td>
+                    <td>{{ hoofexAmount1 }}</td>
+                    <td>{{ hoofexAmount2 }}</td>
+                    <td>{{ hoofexAmount3 }}</td>
+                </tr>
+                <tr>
+                    <td>стоимость средства на ванну {{ bathVolume }} л., руб.</td>
+                    <td></td>
+                    <td>{{ hoofexPrice1 }}</td>
+                    <td>{{ hoofexPrice2 }}</td>
+                    <td>{{ hoofexPrice3 }}</td>
+                </tr>
+                <tr>
+                    <td>ИТОГО</td>
+                    <td></td>
+                    <td>{{ hoofexPrice1 }}</td>
+                    <td>{{ hoofexPrice2 }}</td>
+                    <td>{{ hoofexPrice3 }}</td>
+                </tr>
+                <tr>
+                    <td>Стоимость обработки на 1 голову КРС</td>
+                    <td>руб./голову</td>
+                    <td>{{ hoofexTreatmentPrice1 }}</td>
+                    <td>{{ hoofexTreatmentPrice2 }}</td>
+                    <td>{{ hoofexTreatmentPrice3 }}</td>
+                </tr>
+            </table>
+
+        </div>
+
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="hoofex-calc.js"></script>
+
+    </body>
+</html>
