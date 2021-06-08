@@ -30,7 +30,6 @@ const AgentCalc = {
     },
     methods: {
         selectAgent(agentId) {
-            console.log('New agent ' + agentId);
             this.activeAgent = agentId;
         }
     }
