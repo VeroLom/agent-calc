@@ -8,11 +8,14 @@
             td { border: 1px solid #d2d2d2 }
 
             td { padding: .25rem .5rem }
+
+            [v-cloak] > * { display:none; }
+            [v-cloak]::before { content: "loading..."; }
         </style>
     </head>
     <body>
 
-        <div id="agent-calc">
+        <div id="agent-calc" v-cloak>
             <div class="buttons-container">
                 <button
                     v-for="(agentName, index) in agentNames"
@@ -66,6 +69,29 @@
                 </tr>
 
                 <tr><th colspan="5">{{ agentNames[activeAgent] }}</th></tr>
+                <template v-if="activeAgent == 3">
+                    <tr>
+                        <td>Готовое средство {{ agentNames[0] }}</td>
+                        <td><input v-model="agentPrices[0]" /></td>
+                        <td>{{ agentPercent(0, 1) }}%</td>
+                        <td>{{ agentPercent(0, 2) }}%</td>
+                        <td>{{ agentPercent(0, 3) }}%</td>
+                    </tr>
+                    <tr>
+                        <td>кол-во средства на ванну {{ bathVolume }} л., кг.</td>
+                        <td></td>
+                        <td>{{ agentAmount(0, 1) }}</td>
+                        <td>{{ agentAmount(0, 2) }}</td>
+                        <td>{{ agentAmount(0, 3) }}</td>
+                    </tr>
+                    <tr>
+                        <td>стоимость средства на ванну {{ bathVolume }} л., руб.</td>
+                        <td></td>
+                        <td>{{ agentPrice(0, 1) }}</td>
+                        <td>{{ agentPrice(0, 2) }}</td>
+                        <td>{{ agentPrice(0, 3) }}</td>
+                    </tr>
+                </template>
                 <tr>
                     <td>Готовое средство {{ agentNames[activeAgent] }}</td>
                     <td><input v-model="agentPrices[activeAgent]" /></td>
