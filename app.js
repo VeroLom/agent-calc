@@ -1,3 +1,5 @@
+((Vue) => {
+
 const AgentCalc = {
     data() {
         return {
@@ -36,3 +38,5 @@ const AgentCalc = {
 }
 
 let app = Vue.createApp(AgentCalc).mount('#agent-calc');
+
+})(Vue);
