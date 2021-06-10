@@ -55,21 +55,21 @@
                 <tr>
                     <td>кол-во средства на ванну {{ bathVolume }} л., кг.</td>
                     <td></td>
-                    <td v-for="(agentCase, index) in sulfur.base.cases" class="number">
+                    <td v-for="index in sulfur.base.cases.keys()" class="number">
                         {{ sulfurAmount(sulfur.base, index) }}
                     </td>
                 </tr>
                 <tr>
                     <td>стоимость средства на ванну {{ bathVolume }} л., руб.</td>
                     <td></td>
-                    <td v-for="(agentCase, index) in sulfur.base.cases" class="number hl">
+                    <td v-for="index in sulfur.base.cases.keys()" class="number hl">
                         {{ sulfurPrice(sulfur.base, index) }}
                     </td>
                 </tr>
                 <tr>
                     <td class="number hl result">Стоимость обработки на 1 голову КРС</td>
                     <td>руб./голову</td>
-                    <td v-for="(agentCase, index) in sulfur.base.cases" class="number hl result">
+                    <td v-for="index in sulfur.base.cases.keys()" class="number hl result">
                         {{ sulfurTreatmentPrice(sulfur.base, index) }}
                     </td>
                 </tr>
@@ -87,14 +87,14 @@
                     <tr>
                         <td>кол-во средства на ванну {{ bathVolume }} л., кг.</td>
                         <td></td>
-                        <td v-for="(agentCase, index) in sulfur.mix.cases" class="number">
+                        <td v-for="index in sulfur.mix.cases.keys()" class="number">
                             {{ sulfurAmount(sulfur.mix, index) }}
                         </td>
                     </tr>
                     <tr>
                         <td>стоимость средства на ванну {{ bathVolume }} л., руб.</td>
                         <td></td>
-                        <td v-for="(agentCase, index) in sulfur.mix.cases" class="number hl">
+                        <td v-for="index in sulfur.mix.cases.keys()" class="number hl">
                             {{ sulfurPrice(sulfur.mix, index) }}
                         </td>
                     </tr>
@@ -110,14 +110,14 @@
                 <tr>
                     <td>кол-во средства на ванну {{ bathVolume }} л., кг.</td>
                     <td></td>
-                    <td v-for="(agentCase, index) in activeAgent.cases" class="number">
+                    <td v-for="index in activeAgent.cases.keys()" class="number">
                         {{ agentAmount(index) }}
                     </td>
                 </tr>
                 <tr>
                     <td>стоимость средства на ванну {{ bathVolume }} л., руб.</td>
                     <td></td>
-                    <td v-for="(agentCase, index) in activeAgent.cases" class="number">
+                    <td v-for="index in activeAgent.cases.keys()" class="number">
                         {{ agentPrice(index) }}
                     </td>
                 </tr>
@@ -126,12 +126,12 @@
                     <td></td>
 
                     <template v-if="activeAgent.additive">
-                        <td v-for="(agentCase, index) in activeAgent.cases" class="number">
+                        <td v-for="index in activeAgent.cases.keys()" class="number">
                             {{ agentMixedPrice(sulfur.mix, index) }}
                         </td>
                     </template>
                     <template v-else>
-                        <td v-for="(agentCase, index) in activeAgent.cases" class="number hl">
+                        <td v-for="index in activeAgent.cases.keys()" class="number hl">
                             {{ agentPrice(index) }}
                         </td>
                     </template>
@@ -141,12 +141,12 @@
                     <td>руб./голову</td>
 
                     <template v-if="activeAgent.additive">
-                        <td v-for="(agentCase, index) in activeAgent.cases" class="number hl result">
+                        <td v-for="index in activeAgent.cases.keys()" class="number hl result">
                             {{ agentMixedTreatmentPrice(sulfur.mix, index) }}
                         </td>
                     </template>
                     <template v-else>
-                        <td v-for="(agentCase, index) in activeAgent.cases" class="number hl result">
+                        <td v-for="index in activeAgent.cases.keys()" class="number hl result">
                             {{ agentTreatmentPrice(index) }}
                         </td>
                     </template>
