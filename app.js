@@ -4,35 +4,61 @@ const AgentCalc = {
     data() {
         return {
             bathVolume: 200,
-            activeAgent: 1,
-            agentPrices: [ 245, 650, 450, 160], // copper sulfur price, Extra, new, Plus
-            agentNames: [ 'Медный купорос (сульфат меди)', 'HOOFEX EXTRA', 'HOOFEX', 'HOOFEX PLUS' ],
-
-            percent: {
-                1: [ 5,  1,   2, 2.5 ], // sulfur percent, Extra, new, Plus
-                2: [ 7,  1.5, 3, 3.5 ],
-                3: [ 10, 2,   4, 5   ],
-                4: [ 1,  1,   1, 7   ], // Extra percents for Hoofex Plus
+            activeAgent: 0,
+            sulfur: {
+                base: {
+                    id: 1,
+                    name: 'Медный купорос (сульфат меди)',
+                    price: 245,
+                    cases: [ 5, 7, 10 ],
+                },
+                mix: {
+                    id: 2,
+                    name: 'Медный купорос (сульфат меди)',
+                    price: 245,
+                    cases: [ 2.5, 3.5, 5, 7 ],
+                },
             },
+            agents: [
+                {
+                    id: 1,
+                    name: 'HOOFEX EXTRA',
+                    price: 650,
+                    cases: [ 1, 1.5, 2 ],
+                    additive: false,
+                },
+                {
+                    id: 1,
+                    name: 'HOOFEX',
+                    price: 450,
+                    cases: [ 2, 3, 4 ],
+                    additive: false,
+                },
+                {
+                    id: 1,
+                    name: 'HOOFEX PLUS',
+                    price: 160,
+                    cases: [ 2, 2.85, 4.05, 5.7 ],
+                    additive: true,
+                },
+            ],
         }
     },
     computed: {
-        agentPercent() {
-            return (agent, agentId) => this.percent[agentId][agent]
-        },
         agentAmount() {
-            return (agent, agentId) => Math.round(this.percent[agentId][agent] / 100 * this.bathVolume)
+            return (agent, index) => Math.round(agent.cases[index] / 100 * this.bathVolume)
         },
         agentPrice() {
-            return (agent, agentId) => this.agentAmount(agent, agentId) * this.agentPrices[agent]
+            return (agent, index) => this.agentAmount(agent, index) * agent.price
         },
+
         agentTreatmentPrice() {
-            return (agent, agentId) => this.agentPrice(agent, agentId) / this.bathVolume
+            return (agent, index) => this.agentPrice(agent, index) / this.bathVolume
         },
     },
     methods: {
-        selectAgent(agentId) {
-            this.activeAgent = agentId;
+        selectAgent(index) {
+            this.activeAgent = index;
         }
     }
 }
