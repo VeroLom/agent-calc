@@ -1,10 +1,15 @@
 ((Vue) => {
+const bathVolume = 200;
+
+const round = (num) => Math.round((num + Number.EPSILON) * 100) / 100;
+const agentAmount = (cases, index) => round(cases[index] / 100 * bathVolume);
+const agentPrice = (amount, price) => round(amount * price);
+const agentTreatmentPrice = (price) => round(price / bathVolume);
 
 const AgentCalc = {
     data() {
         return {
-            bathVolume: 200,
-            activeAgent: 0,
+            activeAgentIndex: 0,
             sulfur: {
                 base: {
                     id: 1,
@@ -45,20 +50,43 @@ const AgentCalc = {
         }
     },
     computed: {
-        agentAmount() {
-            return (agent, index) => Math.round(agent.cases[index] / 100 * this.bathVolume)
+        bathVolume() {
+            return bathVolume;
         },
-        agentPrice() {
-            return (agent, index) => this.agentAmount(agent, index) * agent.price
+        activeAgent() {
+            return this.agents[this.activeAgentIndex]
         },
 
+        sulfurAmount() {
+            return (agent, index) => agentAmount(agent.cases, index)
+        },
+        agentAmount() {
+            return (index) => agentAmount(this.activeAgent.cases, index)
+        },
+
+        sulfurPrice() {
+            return (agent, index) => agentPrice(this.sulfurAmount(agent, index), agent.price)
+        },
+        agentPrice() {
+            return (index) => agentPrice(this.agentAmount(index), this.activeAgent.price)
+        },
+        agentMixedPrice() {
+            return (agent, index) => this.agentPrice(index) + this.sulfurPrice(agent, index)
+        },
+
+        sulfurTreatmentPrice() {
+            return (agent, index) => agentTreatmentPrice(this.sulfurPrice(agent, index))
+        },
         agentTreatmentPrice() {
-            return (agent, index) => this.agentPrice(agent, index) / this.bathVolume
+            return (index) => agentTreatmentPrice(this.agentPrice(index))
+        },
+        agentMixedTreatmentPrice() {
+            return (agent, index) => agentTreatmentPrice(this.agentMixedPrice(agent, index))
         },
     },
     methods: {
         selectAgent(index) {
-            this.activeAgent = index;
+            this.activeAgentIndex = index;
         }
     }
 }
